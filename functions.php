@@ -203,16 +203,4 @@ function get_rest_featured_image( $object, $field_name, $request ) {
     }
     return false;
 }
-
-add_action( 'fire_this_function', 'my_custom_callback_function');
-function my_custom_callback_function( $return_args, $post_id){
-    $data = array(
-        'ID' => $post_id,
-        'post_title' => $return_args->post->post_title. "blblb",
-        'post_content' => $return_args->post->post_content
-    );
-
-    wp_update_post( $data );
-    //run your custom logic in here
-}
 ?>
