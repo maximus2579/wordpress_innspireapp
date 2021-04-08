@@ -208,7 +208,7 @@ add_action( 'fire_this_function', 'my_custom_callback_function');
 function my_custom_callback_function( $return_args, $post_id){
     $data = array(
         'ID' => $post_id,
-        'post_title' => $return_args->post->post_title,
+        'post_title' => $return_args->post->post_title. "blblb",
         'post_content' => $return_args->post->post_content
     );
 
