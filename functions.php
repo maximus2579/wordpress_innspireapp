@@ -212,7 +212,7 @@ function my_custom_callback_function( $return_args, $post_id){
 //    );
 //
 //    wp_update_post( $data );
-    return $return_args;
+   var_dump($return_args);
     //run your custom logic in here
 }
 ?>
