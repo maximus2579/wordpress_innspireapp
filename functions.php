@@ -204,14 +204,15 @@ function get_rest_featured_image( $object, $field_name, $request ) {
     return false;
 }
 
-add_action( 'fire_this_function', 'my_custom_callback_function', 20, 4);
-function my_custom_callback_function( $return_args, $post_id, $thumbnail_size, $post_taxonomies ){
-    $data = array(
-        'ID' => $post_id,
-        'post_title' => 'gert',
-    );
-
-    wp_update_post( $data );
+add_action( 'fire_this_function', 'my_custom_callback_function');
+function my_custom_callback_function( $return_args, $post_id){
+//    $data = array(
+//        'ID' => $post_id,
+//        'post_title' => $return_args->,
+//    );
+//
+//    wp_update_post( $data );
+    return $return_args;
     //run your custom logic in here
 }
 ?>
