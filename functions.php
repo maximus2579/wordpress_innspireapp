@@ -203,4 +203,23 @@ function get_rest_featured_image( $object, $field_name, $request ) {
     }
     return false;
 }
+
+add_action('rest_api_init', 'adding_categorie_meta_rest' );
+function adding_categorie_meta_rest() {
+    register_rest_field( 'category',
+        'children',
+        array(
+            'get_callback'      => 'category_meta_callback',
+            'update_callback'   => null,
+            'schema'            => null,
+        )
+    );
+}
+
+
+function category_meta_callback($object) {
+       return get_term_children( $object["id"], "category");
+}
+
+
 ?>
