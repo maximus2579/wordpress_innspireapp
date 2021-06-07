@@ -28,7 +28,7 @@ function my_custom_post_app() {
     );
     register_post_type( 'app', $args );
 }
-add_action( 'init', 'my_custom_post_app' );
+add_action('init', 'my_custom_post_app' );
 
 function app_add_custom_box() {
     $screens = ['app'];
@@ -72,7 +72,8 @@ function app_save_postdata( $post_id ) {
     $field_list = [
         "app_field_datum",
         "app_field_begintijd",
-        "app_field_eindtijd"
+        "app_field_eindtijd",
+        "LS_img"
     ];
     foreach ($field_list as $fieldname) {
         if (array_key_exists($fieldname, $_POST)) {
