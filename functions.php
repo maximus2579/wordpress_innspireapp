@@ -66,6 +66,7 @@ function app_add_custom_box() {
     }
 }
 add_action( 'add_meta_boxes', 'app_add_custom_box' );
+add_action( 'add_post_meta', 'app_add_scraped_url' );
 
 function app_save_postdata( $post_id ) {
     $field_list = [
@@ -98,7 +99,7 @@ function adding_post_meta_rest() {
 }
 
 function post_meta_callback( $post, $field_name, $request) {
-    return get_post_meta( $post['id'] );
+    return get_post_meta( $post['id']);
 }
 
 add_filter('user_contactmethods', 'my_user_contactmethods');
@@ -216,10 +217,29 @@ function adding_categorie_meta_rest() {
     );
 }
 
-
 function category_meta_callback($object) {
        return get_term_children( $object["id"], "category");
 }
+
+
+// Set orderby to 'menu_order' for the 'post' post type
+
+add_filter( "rest_app_query", function( $args, $request )
+{
+    $args['orderby'] = 'menu_order';
+    return $args;
+}, 10, 2 );
+
+
+//Support for 'wpse_custom_order=menu_order' for the 'post' post type
+
+add_filter( "rest_app_query", function( $args, $request )
+{
+    if( 'menu_order' === $request->get_param( 'wpse_custom_order' ) )
+        $args['orderby'] = 'menu_order';
+
+    return $args;
+}, 10, 2 );
 
 
 ?>
