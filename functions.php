@@ -66,7 +66,6 @@ function app_add_custom_box() {
     }
 }
 add_action( 'add_meta_boxes', 'app_add_custom_box' );
-add_action( 'add_post_meta', 'app_add_scraped_url' );
 
 function app_save_postdata( $post_id ) {
     $field_list = [
@@ -100,7 +99,7 @@ function adding_post_meta_rest() {
 }
 
 function post_meta_callback( $post, $field_name, $request) {
-    return get_post_meta( $post['id']);
+    return get_post_meta( $post['id'],  "LS_img");
 }
 
 add_filter('user_contactmethods', 'my_user_contactmethods');
