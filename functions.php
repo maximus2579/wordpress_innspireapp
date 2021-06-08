@@ -99,7 +99,8 @@ function adding_post_meta_rest() {
 }
 
 function post_meta_callback( $post, $field_name, $request) {
-    return get_post_meta( $post['id'],  "LS_img");
+    var_dump(get_post_meta( $post['id']));
+    return get_post_meta( $post['id']);
 }
 
 add_filter('user_contactmethods', 'my_user_contactmethods');
