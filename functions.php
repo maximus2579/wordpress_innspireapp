@@ -84,6 +84,8 @@ function app_save_postdata( $post_id ) {
         }
     }
 }
+
+//add_post_meta(84798, 'color', 'red', true);
 add_action( 'save_post', 'app_save_postdata' );
 
 add_action( 'rest_api_init', 'adding_post_meta_rest' );
@@ -99,7 +101,7 @@ function adding_post_meta_rest() {
 }
 
 function post_meta_callback( $post, $field_name, $request) {
-    var_dump(get_post_meta( $post['id']));
+//    var_dump(get_post_meta( $post['id']));
     return get_post_meta( $post['id']);
 }
 
@@ -242,5 +244,9 @@ add_filter( "rest_app_query", function( $args, $request )
     return $args;
 }, 10, 2 );
 
+add_action( 'fire_this_function', 'my_custom_callback_function', 20, 4 );
+function my_custom_callback_function( $post_data, $post_id, $meta_input, $return_args ){
+    var_dump($post_data, $post_id, $meta_input, $return_args);
+}
 
 ?>
