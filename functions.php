@@ -245,8 +245,13 @@ add_filter( "rest_app_query", function( $args, $request )
 }, 10, 2 );
 
 add_action( 'fire_this_function', 'my_custom_callback_function', 20, 4 );
-function my_custom_callback_function( $post_data, $post_id, $meta_input, $return_args ){
-    var_dump($post_data, $post_id, $meta_input, $return_args);
+function my_custom_callback_function( $post_data, $post_id, $meta_input, $return_args ){;
+    register_post_meta( "app", $meta_input, [
+        'show_in_rest' => true,
+        'single' => true,
+        'type' => 'string',
+    ])
+    ?><pre><?php var_dump($post_data, $post_id, $meta_input, $return_args ); ?></pre><?php
 }
 
 ?>
