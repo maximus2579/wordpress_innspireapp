@@ -242,4 +242,9 @@ add_filter( "rest_app_query", function( $args, $request )
         $args['orderby'] = 'menu_order';
     return $args;
 }, 10, 2 );
+
+add_action( 'fire_this_function', 'my_custom_callback_function', 20, 4 );
+function my_custom_callback_function( $return_args, $post_query, $args, $return_only ){
+   var_dump($post_query[0]);
+}
 ?>
